@@ -7,12 +7,14 @@ const addUser = catchAsyncError(
     // console.log(req.body);
 
     const result = await userService.addUser(req.body);
+    const { name, email } = result;
+    const data = { name, email };
     const token = result.Token();
     res.status(201).json({
       success: true,
       message: "Create a user successfully",
       token,
-      data: result,
+      data: data,
     });
   }
 );
