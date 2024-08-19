@@ -1,10 +1,16 @@
 import { Router } from "express";
 import userController from "./user.controller";
-import { userExist } from "../../middleware/useExists";
-import { validUser } from "../../middleware/user.validation";
+import { registerUserExist } from "../../middleware/useExists";
+import { validLogin, validRegister } from "./../../middleware/user.validation";
 
 const userRouter = Router();
 
-userRouter.post("/adduser", validUser, userExist, userController.addUser);
+userRouter.post(
+  "/adduser",
+  validRegister,
+  registerUserExist,
+  userController.addUser
+);
+userRouter.post("/login", validLogin, userController.loginUser);
 
 export default userRouter;

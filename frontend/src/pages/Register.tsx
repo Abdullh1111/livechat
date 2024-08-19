@@ -1,8 +1,32 @@
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useRegisterUserMutation } from "../services/userApi";
+import { TUser } from "../type/user";
+import { Toaster } from "react-hot-toast";
+import { handleError, handleSuccess } from "../hooks/toas";
+import { useEffect } from "react";
 
 const Register = () => {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+  const [update, { data, error }] = useRegisterUserMutation();
+  const submit = (datas: TUser) => {
+    update(datas);
+  };
+  useEffect(() => {
+    if (data) {
+      handleSuccess(data?.message);
+    }
+    if (error) {
+      handleError(error?.data?.message);
+    }
+  }, [data, error]);
   return (
     <div>
+      <Toaster></Toaster>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row gap-10">
           <div className="lg:w-[30rem]">
@@ -24,7 +48,10 @@ const Register = () => {
               />
               <p className="text-2xl font-bold">WeChat</p>
             </div>
-            <form className="card-body">
+            <form
+              className="card-body"
+              onSubmit={handleSubmit((data) => submit(data as TUser))}
+            >
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -34,7 +61,8 @@ const Register = () => {
                   placeholder="Name"
                   className="input input-bordered"
                   required
-                />
+                  {...register("name")}
+                ></input>
               </div>
               <div className="form-control">
                 <label className="label">
@@ -45,6 +73,7 @@ const Register = () => {
                   placeholder="email"
                   className="input input-bordered"
                   required
+                  {...register("email")}
                 />
               </div>
               <div className="form-control">
@@ -56,7 +85,13 @@ const Register = () => {
                   placeholder="password"
                   className="input input-bordered"
                   required
+                  {...register("password", { minLength: 8 })}
                 />
+                {errors.password && (
+                  <p className="text-red-700 text-sm mt-2">
+                    password must be 8 character
+                  </p>
+                )}
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
@@ -64,7 +99,9 @@ const Register = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
+                <button type="submit" className="btn btn-primary">
+                  Register
+                </button>
               </div>
             </form>
             <div className="mb-4 flex justify-center items-center">

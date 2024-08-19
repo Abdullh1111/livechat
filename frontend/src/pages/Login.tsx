@@ -1,8 +1,9 @@
+// import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div>
+    <form>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse gap-10">
           <div className="lg:w-96">
@@ -49,7 +50,9 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button type="submit" className="btn btn-primary">
+                  Login
+                </button>
               </div>
             </form>
             <div className="mb-4 flex justify-center items-center">
@@ -61,7 +64,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

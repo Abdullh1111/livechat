@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { user } from "../module/user/user.model";
 import { appError } from "../errorfolder/appError";
 
-export const userExist = async (
+export const registerUserExist = async (
   req: Request,
   res: Response,
   next: NextFunction
