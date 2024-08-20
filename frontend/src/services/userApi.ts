@@ -28,10 +28,14 @@ export const userApi = createApi({
     userData: builder.query<any,void>({
       query: () => "/userdata",
     }),
+    allPeople: builder.query<any,void>({
+      query: () => "/getallpeople",
+    }),
   }),
 });
 export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useUserDataQuery,
+  useAllPeopleQuery,
 } = userApi;

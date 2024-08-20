@@ -46,8 +46,21 @@ const userData = catchAsyncError(async (req: Request, res: Response) => {
     data: req.body,
   });
 });
+
+const getAllPeople = catchAsyncError(async (req: Request, res: Response) => {
+  // console.log(req.body);
+
+  const result = await userService.getAllPeople(req.body);
+
+  res.status(201).json({
+    success: true,
+    message: "get all user successfully",
+    data: result,
+  });
+});
 export default {
   addUser,
   loginUser,
   userData,
+  getAllPeople,
 };

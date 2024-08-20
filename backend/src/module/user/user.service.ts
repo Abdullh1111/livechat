@@ -35,7 +35,25 @@ const loginUser = async (payload: TUser) => {
     throw new appError(err.message, 400);
   }
 };
+
+const getAllPeople = async (payload: TUser) => {
+  // console.log(payload);
+
+  try {
+    const { email } = payload;
+
+    const result = await user.find({}, {password:0});
+    if (!result) {
+      throw new appError("There is no user", 400);
+    }
+
+    return result;
+  } catch (err: any) {
+    throw new appError(err.message, 400);
+  }
+};
 export default {
   addUser,
   loginUser,
+  getAllPeople,
 };
