@@ -1,12 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "../services/userApi";
 import { TUser } from "../type/user";
-import { Toaster } from "react-hot-toast";
+// import { Toaster } from "react-hot-toast";
 import { handleError, handleSuccess } from "../hooks/toas";
 import { useEffect } from "react";
 
 const Register = () => {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -19,6 +21,7 @@ const Register = () => {
   useEffect(() => {
     if (data) {
       handleSuccess(data?.message);
+      navigate("/login");
     }
     if (error) {
       handleError(error?.data?.message);
@@ -26,7 +29,6 @@ const Register = () => {
   }, [data, error]);
   return (
     <div>
-      <Toaster></Toaster>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row gap-10">
           <div className="lg:w-[30rem]">
@@ -43,7 +45,7 @@ const Register = () => {
             <div className="flex items-center  ml-8 mt-4">
               <img
                 className="w-10 rounded-full shadow-md shadow-cyan-300"
-                src="../../public/istockphoto-1362703367-612x612.jpg"
+                src="/istockphoto-1362703367-612x612.jpg"
                 alt=""
               />
               <p className="text-2xl font-bold">WeChat</p>
@@ -61,8 +63,13 @@ const Register = () => {
                   placeholder="Name"
                   className="input input-bordered"
                   required
-                  {...register("name")}
+                  {...register("name", { minLength: 3 })}
                 ></input>
+                {errors.name && (
+                  <p className="text-red-700 text-sm mt-2">
+                    name must have 3 letter
+                  </p>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -92,11 +99,6 @@ const Register = () => {
                     password must be 8 character
                   </p>
                 )}
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
               </div>
               <div className="form-control mt-6">
                 <button type="submit" className="btn btn-primary">

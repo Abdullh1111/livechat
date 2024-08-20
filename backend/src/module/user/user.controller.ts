@@ -27,6 +27,8 @@ const loginUser = catchAsyncError(async (req: Request, res: Response) => {
     .status(201)
     .cookie("token", token, {
       httpOnly: true,
+      secure: true,
+      maxAge: 30 * 24 * 60 * 60 * 1000,
     })
     .json({
       success: true,
@@ -34,7 +36,18 @@ const loginUser = catchAsyncError(async (req: Request, res: Response) => {
       data: data,
     });
 });
+
+const userData = catchAsyncError(async (req: Request, res: Response) => {
+  // console.log(req.body);
+
+  res.status(201).json({
+    success: true,
+    message: "Get user data successfully",
+    data: req.body,
+  });
+});
 export default {
   addUser,
   loginUser,
+  userData,
 };

@@ -1,9 +1,39 @@
-// import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { useLoginUserMutation } from "../services/userApi";
+import { TUser } from "../type/user";
+import { handleError, handleSuccess } from "../hooks/toas";
+import { useEffect, useState } from "react";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [cookie, setCookie] = useState(false);
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+  const [update, { data, error }] = useLoginUserMutation();
+  useEffect(() => {
+    if (data) {
+      handleSuccess(data?.message);
+      setCookie(true);
+      // setTimeout(() => {
+      //   navigate("/");
+      // }, 1000);
+    }
+    if (error) {
+      handleError(error?.data?.message);
+    }
+  }, [data, error]);
+  useEffect(() => {
+    if (cookie) {
+      navigate("/");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cookie]);
   return (
-    <form>
+    <div>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse gap-10">
           <div className="lg:w-96">
@@ -16,12 +46,15 @@ const Login = () => {
             <div className="flex items-center  ml-8 mt-4">
               <img
                 className="w-10 rounded-full shadow-md shadow-cyan-300"
-                src="../../public/istockphoto-1362703367-612x612.jpg"
+                src="/public/istockphoto-1362703367-612x612.jpg"
                 alt=""
               />
               <p className="text-2xl font-bold">WeChat</p>
             </div>
-            <form className="card-body">
+            <form
+              className="card-body"
+              onSubmit={handleSubmit((data) => update(data as TUser))}
+            >
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -31,6 +64,7 @@ const Login = () => {
                   placeholder="email"
                   className="input input-bordered"
                   required
+                  {...register("email")}
                 />
               </div>
               <div className="form-control">
@@ -42,7 +76,13 @@ const Login = () => {
                   placeholder="password"
                   className="input input-bordered"
                   required
+                  {...register("password", { minLength: 8 })}
                 />
+                {errors.password && (
+                  <p className="text-red-700 text-sm mt-2">
+                    password must be 8 character
+                  </p>
+                )}
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
@@ -64,7 +104,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 
