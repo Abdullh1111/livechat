@@ -2,13 +2,29 @@ import { useForm } from "react-hook-form";
 
 import { FiSend } from "react-icons/fi";
 import { useAppSelector } from "../../hooks/reducer";
-const SentMessage = () => {
-  const chatWith = useAppSelector((state) => state.chatWith);
+import { useSentMessageMutation } from "../../services/messageApi";
+import { handleError } from "../../hooks/toas";
+import { useEffect } from "react";
+type TData = { message: string };
 
-  const { handleSubmit, register } = useForm();
+const SentMessage = () => {
+  const { _id } = useAppSelector((state) => state.chatWith);
+  const [update, { error }] = useSentMessageMutation();
+
+  useEffect(() => {
+    if (error) {
+      handleError(error.data.message || error.error);
+    }
+  }, [error]);
+
+  const { handleSubmit, register, reset } = useForm();
+  const onSubmit = (data: TData) => {
+    update({ messages: { ...data, to: _id } });
+    reset();
+  };
   return (
     <div>
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
+      <form onSubmit={handleSubmit((data) => onSubmit(data as TData))}>
         <input
           {...register("message")}
           type="text"

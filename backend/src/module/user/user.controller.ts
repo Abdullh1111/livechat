@@ -43,14 +43,14 @@ const userData = catchAsyncError(async (req: Request, res: Response) => {
   res.status(201).json({
     success: true,
     message: "Get user data successfully",
-    data: req.body,
+    data: req.body.user,
   });
 });
 
 const getAllPeople = catchAsyncError(async (req: Request, res: Response) => {
   // console.log(req.body);
 
-  const result = await userService.getAllPeople(req.body);
+  const result = await userService.getAllPeople(req.body.user);
 
   res.status(201).json({
     success: true,

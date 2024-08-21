@@ -8,7 +8,9 @@ export const authUser = async (
   res: Response,
   next: NextFunction
 ) => {
+  
   const { token } = req.cookies;
+  
   if (!token) {
     next(
       new appError(
@@ -29,7 +31,8 @@ export const authUser = async (
           next(new appError("An error occurred while verifying token", 500));
         }
       } else {
-        req.body = userData;
+        const user = userData
+        req.body = {...req.body,user};
         next();
       }
     });

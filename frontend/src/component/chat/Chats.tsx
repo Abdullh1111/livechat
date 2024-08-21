@@ -11,6 +11,10 @@ const Chats = () => {
   return (
     <div className="bg-white h-[90vh] w-3/4 overflow-auto rounded-lg">
       <ChatName data={chatWith}></ChatName>
+      
+      <div className=" overflow-auto h-[75vh]">
+        
+      </div>
       {/* input field */}
       <SentMessage></SentMessage>
 
