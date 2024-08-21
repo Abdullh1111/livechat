@@ -58,9 +58,19 @@ const getAllPeople = catchAsyncError(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+const logout = catchAsyncError(async (req: Request, res: Response) => {
+  // console.log(req.body);
+
+  res.clearCookie('token').status(201).json({
+    success: true,
+    message: "Logout successfully",
+  });
+});
 export default {
   addUser,
   loginUser,
   userData,
   getAllPeople,
+  logout
 };

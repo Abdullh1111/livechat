@@ -1,4 +1,5 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
+import Logout from "./Logout";
 const Navbar = () => {
   return (
     <div>
@@ -67,7 +68,7 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <Logout></Logout>
               </li>
             </ul>
           </div>

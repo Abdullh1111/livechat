@@ -7,7 +7,7 @@ const Chatlists = () => {
   const { data, isLoading, error } = useAllPeopleQuery();
   // console.log(data);
   if (error) {
-    handleError(error.data.message || error.error);
+    handleError(error?.data.message || error?.error);
   }
 
   return (

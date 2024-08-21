@@ -52,6 +52,7 @@ const getAllPeople = async (payload: TUser) => {
     throw new appError(err.message, 400);
   }
 };
+
 export default {
   addUser,
   loginUser,

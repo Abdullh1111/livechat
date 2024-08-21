@@ -19,12 +19,12 @@ const PrivateRoute = ({
         handleError(error?.data?.message || error?.error);
         navigate("login");
       }
-
-      if (!data) {
-        return navigate(`/${redirect}`);
+      if(data){
+        return navigate("/")
       }
-      if(redirect===''&& data){
-        navigate('/')
+      if (!data) {
+        
+        return navigate(`/login`);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -14,6 +14,7 @@ userRouter.post(
 );
 userRouter.post("/login", validLogin, userController.loginUser);
 userRouter.get("/userdata", authUser, userController.userData);
-userRouter.get("/getallpeople",authUser,userController.getAllPeople)
+userRouter.get("/getallpeople",authUser,userController.getAllPeople);
+userRouter.post("/logout",authUser,userController.logout)
 
 export default userRouter;

@@ -31,6 +31,13 @@ export const userApi = createApi({
     allPeople: builder.query<any,void>({
       query: () => "/getallpeople",
     }),
+    logout: builder.mutation<any,void>({
+      query: () => ({
+        url: "/logout",
+        method: "POST",
+
+      }),
+    }),
   }),
 });
 export const {
@@ -38,4 +45,5 @@ export const {
   useLoginUserMutation,
   useUserDataQuery,
   useAllPeopleQuery,
+  useLogoutMutation
 } = userApi;
