@@ -1,20 +1,13 @@
-import { useEffect, useState } from "react";
+
 import { useAppSelector } from "../../hooks/reducer";
 import { TMassege } from "../../type/basic-type";
-import { socket } from "../../Mainurl/Url";
 
 const ShowMessage = ({ message }: { message: TMassege }) => {
-  const chatWith = useAppSelector((state) => state.chatWith);
-  const user = useAppSelector((state) => state.user);
-  const [onConnection, setOnConnection] = useState(false)
-  const sender = chatWith._id === message.to;
-  useEffect(() => {
-    
-    socket.emit("setup",user);
-    socket.on("connection",()=>{setOnConnection(true)})
-  }, [user]);
-  console.log(onConnection);
   
+  const chatWith = useAppSelector((state) => state.chatWith);
+  const sender = chatWith._id === message.to;
+//  console.log(message);
+ 
   return (
     <div
       className={`flex px-8 font-bold text-lg  ${

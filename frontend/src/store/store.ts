@@ -3,11 +3,13 @@ import userSlice from "../features/user/userSlice";
 import { userApi } from "../services/userApi";
 import chatWithSlice from "../features/chatWith/chatWithSlice";
 import { messageApi } from "../services/messageApi";
+import newMessageSlice from './../features/chatWith/newmessage';
 
 export const store = configureStore({
   reducer: {
     user: userSlice,
     chatWith: chatWithSlice,
+    newMessage: newMessageSlice,
     [userApi.reducerPath]: userApi.reducer,
     [messageApi.reducerPath]: messageApi.reducer,
   },

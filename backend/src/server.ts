@@ -28,19 +28,19 @@ async function main() {
 
   // Set up socket.io connection event
   io.on("connection", (socket) => {
-    console.log("A user connected");
-    socket.on("setup",(data)=>{
-      socket.join(data.id)
-      console.log(`join ${data.id}`);
-      
-      socket.emit("connection")
-    })
-    // socket.on("join",(data)=>{
-    //   socket.join(data)
-    //   })
-    // socket.on("sentMessage", () => {
-    //   socket.in("data ")
-    // })
+    // console.log("A user connected");
+    socket.on("setup", (data) => {
+      if (data.id) {
+        socket.join(data.id);
+        // console.log(`join ${data.id}`);
 
+        
+      }
+      
+    });
+    socket.on("send message", (data) => {
+      // console.log(data);
+      socket.in(data.to).emit("newmessage",data)
+    });
   });
 }

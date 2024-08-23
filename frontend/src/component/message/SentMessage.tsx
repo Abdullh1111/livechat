@@ -5,6 +5,7 @@ import { useAppSelector } from "../../hooks/reducer";
 import { useSentMessageMutation } from "../../services/messageApi";
 import { handleError } from "../../hooks/toas";
 import { useEffect } from "react";
+import { socket } from "../../Mainurl/Url";
 type TData = { message: string };
 
 const SentMessage = () => {
@@ -19,7 +20,10 @@ const SentMessage = () => {
 
   const { handleSubmit, register, reset } = useForm();
   const onSubmit = (data: TData) => {
-    update({ messages: { ...data, to: _id } });
+    const message = { ...data, to: _id } 
+    update({ messages: message});
+    socket.emit("send message",message)
+    
     reset();
   };
   return (
