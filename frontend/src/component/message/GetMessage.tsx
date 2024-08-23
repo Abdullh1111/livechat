@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { updateMessage } from "../../features/chatWith/newmessage";
-import { useAppDispatch, useAppSelector } from "../../hooks/reducer";
+import {  useAppSelector } from "../../hooks/reducer";
 import { useGetMessageQuery } from "../../services/messageApi";
 import { TMassege } from "../../type/basic-type";
 import ShowMessage from "./ShowMessage";
@@ -27,7 +26,7 @@ const GetMessage = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-console.log(data.data);
+// console.log(data.data);
 
   return (
     <div>

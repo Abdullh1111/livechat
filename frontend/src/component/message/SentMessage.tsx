@@ -30,10 +30,11 @@ const SentMessage = () => {
     <div>
       <form onSubmit={handleSubmit((data) => onSubmit(data as TData))}>
         <input
+          autoFocus
           {...register("message")}
           type="text"
           placeholder="Type your message here..."
-          className="input h-14 text-white input-bordered input-info w-[70vw] absolute bottom-5 right-7"
+          className="input h-14 text-white input-bordered input-info w-[90%] md:w-[48vw] lg:w-[55vw] xl:w-[58vw] 2xl:w-[77vw] absolute bottom-3 right-4 md:right-8"
         />
         <button>
           <FiSend className="text-white hover:bg-slate-600 absolute bottom-7 right-10 text-3xl "></FiSend>
