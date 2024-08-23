@@ -19,7 +19,7 @@ const SentMessage = async (payload: Request) => {
 const getMessage = async (payload: Request) => {
     try {
         const {id} = payload.params;
-        console.log(id);
+        // console.log(id);
         
       const {user} = payload.body
       const result = await message.find({
@@ -28,7 +28,7 @@ const getMessage = async (payload: Request) => {
           { from: id, to: user.id }
         ]
       });
-      console.log(result);
+      // console.log(result);
       
       return result;
     } catch (err: any) {

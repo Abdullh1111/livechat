@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TUser } from "../type/user";
+import { TUser } from "../type/basic-type";
 import { url } from "../Mainurl/Url";
 
 export const userApi = createApi({
@@ -25,17 +25,16 @@ export const userApi = createApi({
         body: data,
       }),
     }),
-    userData: builder.query<any,void>({
+    userData: builder.query<any, void>({
       query: () => "/userdata",
     }),
-    allPeople: builder.query<any,void>({
+    allPeople: builder.query<any, void>({
       query: () => "/getallpeople",
     }),
-    logout: builder.mutation<any,void>({
+    logout: builder.mutation<any, void>({
       query: () => ({
         url: "/logout",
         method: "POST",
-
       }),
     }),
   }),
@@ -45,5 +44,5 @@ export const {
   useLoginUserMutation,
   useUserDataQuery,
   useAllPeopleQuery,
-  useLogoutMutation
+  useLogoutMutation,
 } = userApi;

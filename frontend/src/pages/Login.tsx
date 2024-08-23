@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../services/userApi";
-import { TUser } from "../type/user";
+import { TUser } from "../type/basic-type";
 import { handleError, handleSuccess } from "../hooks/toas";
 import { useEffect, useState } from "react";
 
@@ -30,7 +30,7 @@ const Login = () => {
     if (cookie) {
       navigate("/");
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookie]);
   return (
     <div>

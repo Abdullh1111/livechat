@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "../services/userApi";
-import { TUser } from "../type/user";
+import { TUser } from "../type/basic-type";
 // import { Toaster } from "react-hot-toast";
 import { handleError, handleSuccess } from "../hooks/toas";
 import { useEffect } from "react";

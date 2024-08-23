@@ -1,6 +1,6 @@
 import { handleError } from "../../hooks/toas";
 import { useAllPeopleQuery } from "../../services/userApi";
-import { TUser } from "../../type/user";
+import { TUser } from "../../type/basic-type";
 import ChatName from "./ChatName";
 
 const Chatlists = () => {

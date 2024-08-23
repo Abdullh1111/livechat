@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { url } from "../Mainurl/Url";
+
+import {  url } from "../Mainurl/Url";
 
 export const messageApi = createApi({
   reducerPath: "messageApi",
@@ -7,6 +8,7 @@ export const messageApi = createApi({
     baseUrl: `${url}/message`,
     credentials: "include",
   }),
+  tagTypes: ["message"],
   endpoints: (builder) => ({
     sentMessage: builder.mutation({
       query: (data) => ({
@@ -14,7 +16,17 @@ export const messageApi = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["message"],
+    }),
+    getMessage: builder.query({
+      query: (id) => ({
+        url: `/get/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["message"],
+      
     }),
   }),
 });
-export const { useSentMessageMutation } = messageApi;
+
+export const { useSentMessageMutation, useGetMessageQuery } = messageApi;

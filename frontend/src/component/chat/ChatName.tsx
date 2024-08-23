@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { setChatWith } from "../../features/chatWith/chatWithSlice";
-import { TUser } from "../../type/user";
+import { TUser } from "../../type/basic-type";
 import { useAppDispatch } from "./../../hooks/reducer";
 
 const ChatName = ({ data }: { data: Partial<TUser> }) => {
