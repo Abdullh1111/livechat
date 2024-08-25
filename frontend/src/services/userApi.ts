@@ -27,14 +27,14 @@ export const userApi = createApi({
         body: data,
       }),
     }),
-    userData: builder.query({
+    userData: builder.query<any,void>({
       query: () => "/userdata",
       providesTags : ["userData"]
     }),
-    allPeople: builder.query({
+    allPeople: builder.query<any,void>({
       query: () => "/getallpeople",
     }),
-    logout: builder.mutation({
+    logout: builder.mutation<any,void>({
       query: () => ({
         url: "/logout",
         method: "POST",

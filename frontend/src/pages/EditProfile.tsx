@@ -20,16 +20,17 @@ const EditProfile = () => {
   const [update, {data, isLoading, error }] = useEditProfileMutation();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => {
+    
     const formData = new FormData()
     formData.append('name', data?.name)
-    formData.append('email', useData?.email)
+    formData.append('email', (useData?.email as string) )
     formData.append("profileImg", data?.profileImg[0] )
     
     update(formData)
   };
   useEffect(()=>{
     if (error) {
-      handleError(error?.data?.message || error?.error);
+      handleError(error);
     }
     if(isLoading){
       <div>loading...</div>
@@ -38,6 +39,7 @@ const EditProfile = () => {
       navigate('/')
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[error,isLoading,data])
   return (
    isLoading ? <div>loading...</div> : <div className=" mx-auto ">
@@ -60,7 +62,7 @@ const EditProfile = () => {
 
        />
        {errors.name && (
-         <p className="text-red-500">{errors?.name?.message}</p>
+         <p className="text-red-500">{errors.name && "Name is required"}</p>
        )}
      </label>
      <label className="form-control w-full max-w-xs">

@@ -24,7 +24,7 @@ const Register = () => {
       navigate("/login");
     }
     if (error) {
-      handleError(error?.data?.message);
+      handleError(error);
     }
   }, [data, error]);
   return (

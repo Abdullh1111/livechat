@@ -10,7 +10,7 @@ const Chatlists = () => {
   const user = useAppSelector(state=>state.user)
   // console.log(data);
   if (error) {
-    handleError(error?.data.message || error?.error);
+    handleError(error);
   }
   // console.log(user.name);
   

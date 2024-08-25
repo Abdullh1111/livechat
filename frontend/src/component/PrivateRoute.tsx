@@ -6,10 +6,9 @@ import { useAppDispatch } from "../hooks/reducer";
 import { setUser } from "../features/user/userSlice";
 
 const PrivateRoute = ({
-  redirect,
+  // redirect,
   children,
 }: {
-  redirect: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: any;
 }) => {
@@ -19,7 +18,7 @@ const PrivateRoute = ({
   useEffect(() => {
     if (!isLoading) {
       if (error) {
-        handleError(error?.data?.message || error?.error);
+        handleError(error);
         navigate("login");
       }
       if (data) {

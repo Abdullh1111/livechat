@@ -10,7 +10,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <PrivateRoute redirect="login">
+      <PrivateRoute>
         <Mainlayout></Mainlayout>
       </PrivateRoute>
     ),
@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: (
-      <PrivateRoute redirect="">
+      <PrivateRoute>
         <Login></Login>
       </PrivateRoute>
     ),
@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
   {
     path: "/register",
     element: (
-      <PrivateRoute redirect="">
+      <PrivateRoute>
         <Register></Register>
       </PrivateRoute>
     ),

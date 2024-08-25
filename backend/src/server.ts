@@ -28,23 +28,26 @@ async function main() {
 
   // Set up socket.io connection event
   io.on("connection", (socket) => {
-    // console.log("A user connected");
     socket.on("setup", (data) => {
-      if (data.id) {
-        socket.join(data.id);
-        console.log(`join ${data.id}`);
+      // console.log(data);
+      
+      if (data._id) {
+        socket.join(data._id);
+        // console.log(`join ${data._id}`);
   
         const sendMessageHandler = (data: any) => {
           // console.log(data);
+          // console.log(data);
+          
           socket.in(data.to).emit("newmessage", data);
         };
   
         socket.on("send message", sendMessageHandler);
   
         // Remove the event listener when the socket disconnects
-        socket.on("disconnect", () => {
-          socket.off("send message", sendMessageHandler);
-        });
+        // socket.on("disconnect", () => {
+        //   socket.off("send message", sendMessageHandler);
+        // });
       }
     });
   });

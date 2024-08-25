@@ -23,7 +23,7 @@ const Login = () => {
       // }, 1000);
     }
     if (error) {
-      handleError(error?.data?.message);
+      handleError(error);
     }
   }, [data, error]);
   useEffect(() => {

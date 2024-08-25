@@ -14,7 +14,7 @@ const SentMessage = () => {
 
   useEffect(() => {
     if (error) {
-      handleError(error.data.message || error.error);
+      handleError(error);
     }
   }, [error]);
 

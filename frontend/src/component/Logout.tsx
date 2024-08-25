@@ -9,12 +9,13 @@ const Logout = () => {
   const [update, { data, error }] = useLogoutMutation();
   useEffect(() => {
     if (error) {
-      handleError(error?.data?.message || error?.error);
+      handleError(error);
     }
     if (data) {
       handleSuccess(data?.message);
       navigate("/login");
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, data]);
   // const handleLogout = () =>{
   // }
