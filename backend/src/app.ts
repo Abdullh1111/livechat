@@ -6,7 +6,7 @@ import bodyParser from 'body-parser'
 import { globalErrorHandler } from "./errorfolder/globalErrorHandler";
 import messageRoute from "./module/messages/message.router";
 const app = express();
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "livechat-frontend-htb0pborg-abdullh1111s-projects.vercel.app", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
