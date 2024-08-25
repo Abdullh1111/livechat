@@ -67,10 +67,23 @@ const logout = catchAsyncError(async (req: Request, res: Response) => {
     message: "Logout successfully",
   });
 });
+const editUser = catchAsyncError(async (req: Request, res: Response) => {
+  // console.log(req.body);
+  // console.log(req.file);
+  
+  const result = await userService.editUser(req);
+  
+  res.status(201).json({
+    success: true,
+    message: "get all user successfully",
+    data: result,
+  });
+});
 export default {
   addUser,
   loginUser,
   userData,
   getAllPeople,
-  logout
+  logout,
+  editUser
 };

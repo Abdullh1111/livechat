@@ -4,7 +4,7 @@ export const zodRegister = z.object({
   name: z.string(),
   email: z.string(),
   password: z.string(),
-  profileImg: z.instanceof(File).optional(),
+  profileImg: z.string().optional(),
 });
 export const zodLogin = z.object({
   email: z.string(),

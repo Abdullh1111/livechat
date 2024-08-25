@@ -10,7 +10,7 @@ const ShowMessage = ({ message }: { message: TMassege }) => {
  
   return (
     <div
-      className={`flex px-8 font-bold text-lg  ${
+      className={`flex px-8 font-bold text-lg my-9 ${
         sender ? " justify-end" : "justify-start"
       }`}
     >

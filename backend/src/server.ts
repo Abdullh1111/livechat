@@ -19,7 +19,7 @@ async function main() {
 
   // Attach socket.io to the server (after app.listen())
   const io = new Server(server, {
-    pingTimeout: 60000,
+    pingTimeout: 600000,
     cors: {
       origin: "http://localhost:5173",
       credentials: true,
@@ -32,15 +32,20 @@ async function main() {
     socket.on("setup", (data) => {
       if (data.id) {
         socket.join(data.id);
-        // console.log(`join ${data.id}`);
-
-        
+        console.log(`join ${data.id}`);
+  
+        const sendMessageHandler = (data: any) => {
+          // console.log(data);
+          socket.in(data.to).emit("newmessage", data);
+        };
+  
+        socket.on("send message", sendMessageHandler);
+  
+        // Remove the event listener when the socket disconnects
+        socket.on("disconnect", () => {
+          socket.off("send message", sendMessageHandler);
+        });
       }
-      
-    });
-    socket.on("send message", (data) => {
-      // console.log(data);
-      socket.in(data.to).emit("newmessage",data)
     });
   });
 }

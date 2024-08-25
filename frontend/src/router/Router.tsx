@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "../component/PrivateRoute";
 import Chatting from "../pages/Chatting";
+import EditProfile from "../pages/EditProfile";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Chatting></Chatting>,
       },
+      {
+        path: '/editprofile',
+        element: <EditProfile></EditProfile>
+      }
     ],
   },
   {

@@ -32,7 +32,12 @@ export const authUser = async (
         }
       } else {
         const user = userData
+        // console.log(user);
+        
         req.body = {...req.body,user};
+        // console.log(req.body);
+        
+        
         next();
       }
     });

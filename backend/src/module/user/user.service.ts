@@ -1,4 +1,4 @@
-import { NextFunction } from "express";
+import { NextFunction, Request } from "express";
 import { appError } from "../../errorfolder/appError";
 import { TUser } from "./user.interface";
 import { user } from "./user.model";
@@ -53,8 +53,34 @@ const getAllPeople = async (payload: TUser) => {
   }
 };
 
+const editUser = async (req: Request) => {
+  const {name,email,profileImg} = req.body
+  const file = req.file
+  // console.log(req.body);
+  // console.log(req.body);
+  
+  
+
+  try {
+    if(profileImg){
+      
+    const result = await user.updateOne({email},{name,profileImg});
+    return result;
+    }else{
+      
+    const result = await user.updateOne({email},{name});
+    return result;
+    }
+    // console.log(result);
+    
+  } catch (err: any) {
+    throw new appError(err.message, 400);
+  }
+};
+
 export default {
   addUser,
   loginUser,
   getAllPeople,
+  editUser
 };

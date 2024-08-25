@@ -7,17 +7,19 @@ import ChatName from "./ChatName";
 const Chatlists = () => {
   const { data, isLoading, error } = useAllPeopleQuery();
   const chatWith = useAppSelector(state=>state.chatWith)
+  const user = useAppSelector(state=>state.user)
   // console.log(data);
   if (error) {
     handleError(error?.data.message || error?.error);
   }
-
+  // console.log(user.name);
+  
   return (
     <div className={`bg-[#FFF] h-[90vh] md:grid w-full 2xl:w-[20%] md:w-[40%] overflow-auto rounded-xl p-5 ${chatWith.name ? 'hidden': ""}`}>
       <p className="text-black mb-10 font-extrabold text-3xl">People</p>
       {!isLoading &&
-        data.data.map((name: TUser, index: number) => (
-          <ChatName data={name} key={index}></ChatName>
+        data.data.filter((data:TUser)=> data.email!==user.email).map((data: TUser, index: number) => (
+          <ChatName data={data} key={index}></ChatName>
         ))}
     </div>
   );

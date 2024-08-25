@@ -4,7 +4,7 @@ export type TUser = {
   name: string;
   email: string;
   password: string;
-  profileImg?: File;
+  profileImg?: string;
 };
 export type TToken = {
   Token: () => string;
