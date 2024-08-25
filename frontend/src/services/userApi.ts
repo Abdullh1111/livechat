@@ -8,7 +8,9 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${url}/user`,
     credentials: "include",
+    
   }),
+  tagTypes: ["userData"],
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (data: TUser) => ({
@@ -25,24 +27,26 @@ export const userApi = createApi({
         body: data,
       }),
     }),
-    userData: builder.query<any, void>({
+    userData: builder.query({
       query: () => "/userdata",
+      providesTags : ["userData"]
     }),
-    allPeople: builder.query<any, void>({
+    allPeople: builder.query({
       query: () => "/getallpeople",
     }),
-    logout: builder.mutation<any, void>({
+    logout: builder.mutation({
       query: () => ({
         url: "/logout",
         method: "POST",
       }),
     }),
-    editProfile: builder.mutation<any, any>({
+    editProfile: builder.mutation({
       query: (data) => ({
         url: "/editprofile",
         method: "PUT",
         body: data,
       }),
+      invalidatesTags: ["userData"]
     }),
   }),
 });

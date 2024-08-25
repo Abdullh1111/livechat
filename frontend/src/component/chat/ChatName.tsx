@@ -18,8 +18,8 @@ const ChatName = ({ data }: { data: Partial<TUser> }) => {
     >
       <div className="flex justify-start items-center gap-6 p-4">
         <img
-          className="h-10 w-10 rounded-full"
-          src="/istockphoto-1362703367-612x612.jpg"
+          className="h-10 w-10 rounded-full "
+          src={`${data?.profileImg}`}
           alt=""
         />
         <div className="text-black text-lg mb-3">{data.name}</div>

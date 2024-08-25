@@ -42,7 +42,24 @@ const getAllPeople = async (payload: TUser) => {
   try {
     const { email } = payload;
 
-    const result = await user.find({}, {password:0});
+    const result = await user.find({}, { password: 0 });
+    if (!result) {
+      throw new appError("There is no user", 400);
+    }
+
+    return result;
+  } catch (err: any) {
+    throw new appError(err.message, 400);
+  }
+};
+
+const userData = async (payload: TUser) => {
+  // console.log(payload);
+
+  try {
+    const { email } = payload;
+
+    const result = await user.findOne({ email }, { password: 0 });
     if (!result) {
       throw new appError("There is no user", 400);
     }
@@ -54,25 +71,21 @@ const getAllPeople = async (payload: TUser) => {
 };
 
 const editUser = async (req: Request) => {
-  const {name,email,profileImg} = req.body
-  const file = req.file
   // console.log(req.body);
   // console.log(req.body);
-  
-  
 
   try {
-    if(profileImg){
-      
-    const result = await user.updateOne({email},{name,profileImg});
-    return result;
-    }else{
-      
-    const result = await user.updateOne({email},{name});
-    return result;
+    const { name, email, profileImg } = req.body;
+    console.log(profileImg);
+    
+    if (profileImg !== "undefined") {
+      const result = await user.updateOne({ email }, { name, profileImg });
+      return result;
+    } else {
+      const result = await user.updateOne({ email }, { name });
+      return result;
     }
     // console.log(result);
-    
   } catch (err: any) {
     throw new appError(err.message, 400);
   }
@@ -82,5 +95,6 @@ export default {
   addUser,
   loginUser,
   getAllPeople,
-  editUser
+  editUser,
+  userData,
 };

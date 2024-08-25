@@ -6,6 +6,7 @@ const Navbar = () => {
   const useData = useAppSelector(state=>state.user)
   console.log(useData);
   
+  
   return (
     <div>
       <div className="navbar flex items-center bg-[#6E00FF] rounded-lg px-4">
@@ -54,8 +55,8 @@ const Navbar = () => {
             >
               <div className="w-10 rounded-full">
                 <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  alt="profile Image"
+                  src={`${useData.profileImg}`}
                 />
               </div>
             </div>
@@ -65,8 +66,7 @@ const Navbar = () => {
             >
               <li>
                 <Link to="/editprofile" className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
+                  Edit Profile
                 </Link>
               </li>
               <li>

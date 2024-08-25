@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import config from "../../config";
 import { appError } from "../../errorfolder/appError";
+import { image } from "./default.image";
 const userSchema = new Schema<TUser, TUserModel, TToken>({
   name: { type: String, minlength: [2, "Name must contain 2 character"] },
   email: { type: String },
@@ -14,8 +15,7 @@ const userSchema = new Schema<TUser, TUserModel, TToken>({
   profileImg: {
     type: String,
     required: false,
-    default:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhYrE175QkWNI-mYhKy5He5tjsLnrK8ufHAQ&s",
+    default:image,
   },
 });
 userSchema.pre("save", async function () {

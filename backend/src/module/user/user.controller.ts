@@ -39,11 +39,12 @@ const loginUser = catchAsyncError(async (req: Request, res: Response) => {
 
 const userData = catchAsyncError(async (req: Request, res: Response) => {
   // console.log(req.body);
+  const result =await userService.userData(req.body.user)
 
   res.status(201).json({
     success: true,
     message: "Get user data successfully",
-    data: req.body.user,
+    data: result,
   });
 });
 
