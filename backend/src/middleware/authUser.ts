@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import config from "../config";
 import { appError } from "../errorfolder/appError";
-import { TUser } from "../module/user/user.interface";
 export const authUser = async (
   req: Request,
   res: Response,

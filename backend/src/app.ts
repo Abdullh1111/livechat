@@ -1,4 +1,4 @@
-import express, { Request, Response, urlencoded } from "express";
+import express, { Request, Response } from "express";
 import userRouter from "./module/user/user.router";
 import cookieParser from "cookie-parser";
 import cors from "cors";
