@@ -1,7 +1,11 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
 import Logout from "./Logout";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../hooks/reducer";
 const Navbar = () => {
+  const useData = useAppSelector(state=>state.user)
+  console.log(useData);
+  
   return (
     <div>
       <div className="navbar flex items-center bg-[#6E00FF] rounded-lg px-4">

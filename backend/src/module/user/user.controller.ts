@@ -68,7 +68,7 @@ const logout = catchAsyncError(async (req: Request, res: Response) => {
   });
 });
 const editUser = catchAsyncError(async (req: Request, res: Response) => {
-  // console.log(req.body);
+  // console.log(req);
   // console.log(req.file);
   
   const result = await userService.editUser(req);

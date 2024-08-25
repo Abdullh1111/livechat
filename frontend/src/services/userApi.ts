@@ -37,6 +37,13 @@ export const userApi = createApi({
         method: "POST",
       }),
     }),
+    editProfile: builder.mutation<any, any>({
+      query: (data) => ({
+        url: "/editprofile",
+        method: "PUT",
+        body: data,
+      }),
+    }),
   }),
 });
 export const {
@@ -45,4 +52,5 @@ export const {
   useUserDataQuery,
   useAllPeopleQuery,
   useLogoutMutation,
+  useEditProfileMutation
 } = userApi;

@@ -14,6 +14,8 @@ export const uploadCloud = async (
   res: Response,
   next: NextFunction
 ) => {
+  // console.log(req.file,req.body);
+  
       try{
         if (req.file) {
           // console.log("hello");

@@ -11,7 +11,12 @@ const userSchema = new Schema<TUser, TUserModel, TToken>({
     type: String,
     minlength: [8, "Password must contain 8 character"],
   },
-  profileImg: { type: String, required: false },
+  profileImg: {
+    type: String,
+    required: false,
+    default:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhYrE175QkWNI-mYhKy5He5tjsLnrK8ufHAQ&s",
+  },
 });
 userSchema.pre("save", async function () {
   try {
