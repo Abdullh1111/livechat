@@ -21,7 +21,7 @@ async function main() {
   const io = new Server(server, {
     pingTimeout: 600000,
     cors: {
-      origin: "livechat-frontend-htb0pborg-abdullh1111s-projects.vercel.app",
+      origin: "*",
       credentials: true,
     },
   });
