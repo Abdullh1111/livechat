@@ -4,7 +4,7 @@ import { Server } from "socket.io";
 import { appError } from "./errorfolder/appError";
 const mongoose = require("mongoose");
 
-const port = config.port;
+const port = 3000;
 
 main().catch((err) => new appError(err, 400));
 
