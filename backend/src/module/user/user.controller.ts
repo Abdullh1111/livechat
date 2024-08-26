@@ -28,7 +28,7 @@ const loginUser = catchAsyncError(async (req: Request, res: Response) => {
     .cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: 'None',
+      sameSite: 'none',
       maxAge: 30 * 24 * 60 * 60 * 1000,
     })
     .json({
