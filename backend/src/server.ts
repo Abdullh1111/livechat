@@ -21,7 +21,7 @@ async function main() {
   const io = new Server(server, {
     pingTimeout: 600000,
     cors: {
-      origin: "*",
+      origin: "https://livechat-frontend-i0by.onrender.com",
       credentials: true,
     },
   });

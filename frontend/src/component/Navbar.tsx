@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/reducer";
 const Navbar = () => {
   const useData = useAppSelector(state=>state.user)
-  console.log(useData);
+  // console.log(useData);
   
   
   return (
