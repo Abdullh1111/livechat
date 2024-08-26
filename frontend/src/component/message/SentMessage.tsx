@@ -9,7 +9,7 @@ import { socket } from "../../Mainurl/Url";
 type TData = { message: string };
 
 const SentMessage = () => {
-  const { _id } = useAppSelector((state) => state.chatWith);
+  const { _id } = useAppSelector((state) => state?.chatWith);
   const [update, { error }] = useSentMessageMutation();
 
   useEffect(() => {

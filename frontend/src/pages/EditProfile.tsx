@@ -5,9 +5,9 @@ import { useAppSelector } from "../hooks/reducer";
 import { SetStateAction, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const EditProfile = () => {
-  const useData = useAppSelector((state) => state.user);
+  const useData = useAppSelector((state) => state?.user);
   const navigate = useNavigate()
-  const [defaultName,setDefaultName] = useState(useData.name)
+  const [defaultName,setDefaultName] = useState(useData?.name)
   const handleCahnge = (e: { target: { value: SetStateAction<string | undefined>; }; })=>{
     setDefaultName(e.target.value)
   }

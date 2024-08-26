@@ -3,7 +3,7 @@ import Logout from "./Logout";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/reducer";
 const Navbar = () => {
-  const useData = useAppSelector(state=>state.user)
+  const useData = useAppSelector(state=>state?.user)
   // console.log(useData);
   
   
@@ -56,7 +56,7 @@ const Navbar = () => {
               <div className="w-10 rounded-full">
                 <img
                   alt="profile Image"
-                  src={`${useData.profileImg}`}
+                  src={`${useData?.profileImg}`}
                 />
               </div>
             </div>

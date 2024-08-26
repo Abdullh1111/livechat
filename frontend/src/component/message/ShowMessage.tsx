@@ -4,8 +4,8 @@ import { TMassege } from "../../type/basic-type";
 
 const ShowMessage = ({ message }: { message: TMassege }) => {
   
-  const chatWith = useAppSelector((state) => state.chatWith);
-  const sender = chatWith._id === message.to;
+  const chatWith = useAppSelector((state) => state?.chatWith);
+  const sender = chatWith?._id === message?.to;
 //  console.log(message);
  
   return (
@@ -19,7 +19,7 @@ const ShowMessage = ({ message }: { message: TMassege }) => {
           sender ? "text-white bg-[#6E00FF]" : "text-black bg-[#E7E7E7]"
         }`}
       >
-        {message.message}
+        {message?.message}
       </p>
     </div>
   );

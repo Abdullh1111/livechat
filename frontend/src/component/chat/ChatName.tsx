@@ -9,7 +9,7 @@ const ChatName = ({ data }: { data: Partial<TUser> }) => {
   const dispatch = useAppDispatch();
   return (
     <div
-      className={`hover:bg-slate-100 focus:${select && "bg-slate-400"}`}
+      className={ `h-20 hover:bg-slate-100 focus:${select && "bg-slate-400"}`}
       role="button"
       onClick={() => {
         dispatch(setChatWith(data));

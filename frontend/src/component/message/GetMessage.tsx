@@ -27,12 +27,13 @@ const GetMessage = () => {
     if (!isFetching) {
       setNewMsg(null);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refetch]);
   const scrollToBottom = () => {
-    messageListRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messageListRef?.current?.scrollIntoView({ behavior: 'smooth' });
   };
   useEffect(() => {
-    if (messageListRef.current) {
+    if (messageListRef?.current) {
       scrollToBottom()
     }
   }, [data?.data]);
@@ -44,8 +45,8 @@ const GetMessage = () => {
   return (
     <div >
       {data &&
-        data.data.map((message: TMassege) => (
-          <ShowMessage message={message} key={message._id}></ShowMessage>
+        data?.data?.map((message: TMassege) => (
+          <ShowMessage message={message} key={message?._id}></ShowMessage>
         ))}
         <div ref={messageListRef}></div>
     </div>
