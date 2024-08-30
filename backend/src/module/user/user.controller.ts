@@ -25,9 +25,7 @@ const loginUser = catchAsyncError(async (req: Request, res: Response) => {
   const token = result.Token();
   res
     .status(201)
-    .cookie("token", token, {
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-    })
+    .cookie("token", token)
     .json({
       success: true,
       message: "Login user successfully",
@@ -61,7 +59,7 @@ const getAllPeople = catchAsyncError(async (req: Request, res: Response) => {
 const logout = catchAsyncError(async (req: Request, res: Response) => {
   // console.log(req.body);
 
-  res.clearCookie('token').status(201).json({
+  res.clearCookie('token').status(200).json({
     success: true,
     message: "Logout successfully",
   });
