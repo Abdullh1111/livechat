@@ -33,7 +33,7 @@ async function main() {
       
       if (data._id) {
         socket.join(data._id);
-        // console.log(`join ${data._id}`);
+        console.log(`join ${data._id}`);
   
         const sendMessageHandler = (data: any) => {
           // console.log(data);

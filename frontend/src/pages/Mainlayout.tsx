@@ -9,6 +9,7 @@ const Mainlayout = () => {
   useEffect(() => {
     if (user) {
       socket.emit("setup", user);
+      
     }
   }, [user]);
 
