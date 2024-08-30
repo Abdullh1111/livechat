@@ -67,7 +67,12 @@ const getAllPeople = catchAsyncError(async (req: Request, res: Response) => {
 const logout = catchAsyncError(async (req: Request, res: Response) => {
   // console.log(req.body);
 
-  res.clearCookie('token').status(200).json({
+  res.clearCookie('token',{
+    httpOnly: true,
+    secure: true,
+    sameSite:'none',
+
+  }).status(200).json({
     success: true,
     message: "Logout successfully",
   });
