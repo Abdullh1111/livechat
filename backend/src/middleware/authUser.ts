@@ -9,6 +9,7 @@ export const authUser = async (
 ) => {
   
   const { token } = req.cookies;
+  // console.log(token);
   
   if (!token) {
     next(

@@ -46,7 +46,7 @@ const Login = () => {
             <div className="flex items-center  ml-8 mt-4">
               <img
                 className="w-10 rounded-full shadow-md shadow-cyan-300"
-                src="/public/istockphoto-1362703367-612x612.jpg"
+                src="/istockphoto-1362703367-612x612.jpg"
                 alt=""
               />
               <p className="text-2xl font-bold">WeChat</p>

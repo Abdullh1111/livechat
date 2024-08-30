@@ -18,6 +18,8 @@ export const validRegister = (
 
 export const validLogin = (req: Request, res: Response, next: NextFunction) => {
   try {
+    // console.log(req.body);
+    
     const body = zodLogin.parse(req.body);
     req.body = body;
     next();

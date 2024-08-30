@@ -1,4 +1,4 @@
-import app from "./app";
+import app, { url } from "./app";
 import config from "./config";
 import { Server } from "socket.io";
 import { appError } from "./errorfolder/appError";
@@ -21,7 +21,7 @@ async function main() {
   const io = new Server(server, {
     pingTimeout: 600000,
     cors: {
-      origin: "https://livechat-frontend-i0by.onrender.com",
+      origin: url,
       credentials: true,
     },
   });

@@ -23,9 +23,17 @@ const loginUser = catchAsyncError(async (req: Request, res: Response) => {
   const { name, email } = result;
   const data = { name, email };
   const token = result.Token();
+  console.log(token);
+  
   res
     .status(201)
-    .cookie("token", token)
+    .cookie("token", token,{
+      httpOnly: true,
+      secure: true,
+      sameSite:'strict',
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+
+    })
     .json({
       success: true,
       message: "Login user successfully",
