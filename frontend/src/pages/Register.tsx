@@ -6,6 +6,7 @@ import { TUser } from "../type/basic-type";
 // import { Toaster } from "react-hot-toast";
 import { handleError, handleSuccess } from "../hooks/toas";
 import { useEffect } from "react";
+import LoadingState from "../component/LoadingState";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Register = () => {
     register,
     formState: { errors },
   } = useForm();
-  const [update, { data, error }] = useRegisterUserMutation();
+  const [update, { data, error, isLoading }] = useRegisterUserMutation();
   const submit = (datas: TUser) => {
     update(datas);
   };
@@ -101,8 +102,18 @@ const Register = () => {
                 )}
               </div>
               <div className="form-control mt-6">
-                <button type="submit" className="btn btn-primary">
-                  Register
+                <button
+                  disabled={isLoading}
+                  type="submit"
+                  className="btn btn-primary"
+                >
+                  {isLoading ? (
+                    <div className="flex justify-center items-center mr-5">
+                      <LoadingState /> Loading
+                    </div>
+                  ) : (
+                    "Register"
+                  )}
                 </button>
               </div>
             </form>

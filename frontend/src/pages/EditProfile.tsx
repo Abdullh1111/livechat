@@ -4,6 +4,7 @@ import { handleError } from "../hooks/toas";
 import { useAppSelector } from "../hooks/reducer";
 import { SetStateAction, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoadingState from "../component/LoadingState";
 const EditProfile = () => {
   const useData = useAppSelector((state) => state?.user);
   const navigate = useNavigate()
@@ -33,7 +34,7 @@ const EditProfile = () => {
       handleError(error);
     }
     if(isLoading){
-      <div>loading...</div>
+      <LoadingState/>
     }
     if(data){
       navigate('/')
@@ -42,7 +43,7 @@ const EditProfile = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[error,isLoading,data])
   return (
-   isLoading ? <div>loading...</div> : <div className=" mx-auto ">
+   isLoading ? <LoadingState/> : <div className=" mx-auto ">
    <form
      onSubmit={handleSubmit(onSubmit)}
      className=" flex flex-col items-center justify-center h-[90vh] gap-4 text-white"

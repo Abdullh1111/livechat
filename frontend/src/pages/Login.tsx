@@ -4,6 +4,7 @@ import { useLoginUserMutation } from "../services/userApi";
 import { TUser } from "../type/basic-type";
 import { handleError, handleSuccess } from "../hooks/toas";
 import { useEffect, useState } from "react";
+import LoadingState from "../component/LoadingState";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Login = () => {
     register,
     formState: { errors },
   } = useForm();
-  const [update, { data, error }] = useLoginUserMutation();
+  const [update, { data, error, isLoading }] = useLoginUserMutation();
   useEffect(() => {
     if (data) {
       handleSuccess(data?.message);
@@ -90,8 +91,18 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button type="submit" className="btn btn-primary">
-                  Login
+                <button
+                  disabled={isLoading}
+                  type="submit"
+                  className={`btn btn-primary`}
+                >
+                  {isLoading ? (
+                    <div className="flex justify-center items-center mr-5">
+                      <LoadingState /> Loading
+                    </div>
+                  ) : (
+                    "Login"
+                  )}
                 </button>
               </div>
             </form>

@@ -2,11 +2,11 @@ import express, { Request, Response } from "express";
 import userRouter from "./module/user/user.router";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import bodyParser from 'body-parser'
+import bodyParser from "body-parser";
 import { globalErrorHandler } from "./errorfolder/globalErrorHandler";
 import messageRoute from "./module/messages/message.router";
 const app = express();
-export const url = "https://livechat-frontend-i0by.onrender.com"
+export const url = "https://livechat-pied.vercel.app";
 app.use(cors({ origin: url, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());

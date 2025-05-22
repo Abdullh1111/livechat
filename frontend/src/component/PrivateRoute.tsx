@@ -4,6 +4,7 @@ import { useUserDataQuery } from "../services/userApi";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks/reducer";
 import { setUser } from "../features/user/userSlice";
+import LoadingState from "./LoadingState";
 
 const PrivateRoute = ({
   // redirect,
@@ -31,7 +32,17 @@ const PrivateRoute = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error, isLoading]);
-  return <div>{isLoading ? "loading" : children}</div>;
+  return (
+    <div>
+      {isLoading ? (
+        <div className="w-screen h-screen flex justify-center items-center">
+          <LoadingState />
+        </div>
+      ) : (
+        children
+      )}
+    </div>
+  );
 };
 
 export default PrivateRoute;

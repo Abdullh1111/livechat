@@ -4,6 +4,7 @@ import { useGetMessageQuery } from "../../services/messageApi";
 import { TMassege } from "../../type/basic-type";
 import ShowMessage from "./ShowMessage";
 import { socket } from "../../Mainurl/Url";
+import LoadingState from "../LoadingState";
 
 const GetMessage = () => {
   const chatWith = useAppSelector((state) => state.chatWith);
@@ -26,7 +27,7 @@ const GetMessage = () => {
   }, [data?.data]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   if (!isLoading) {
